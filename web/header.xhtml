@@ -1,0 +1,17 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets">
+    <div class="header">
+        <h:form id="id_frmHeaderMenu" prependId="false" >
+            <ul>
+                <li>                                
+                    <h:commandLink action="/services/ServiceCategoryList" immediate="true" >  
+                        <h:outputText value="#{resourceBundle.categories}" />  
+                    </h:commandLink>
+                </li>
+                <li><a href="#contact">#{resourceBundle.services}</a></li>
+                <li><a href="#about">#{resourceBundle.about}</a></li>
+            </ul>             
+        </h:form>               
+    </div>
+</ui:composition>

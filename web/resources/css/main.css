@@ -1,0 +1,87 @@
+/* 
+    Document   : css
+    Created on : Sep 25, 2015, 1:36:09 PM
+    Author     : vikaswarkar
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+html,body {
+/*    background: #fff url(#{resource['img:background.jpg']}) repeat-x 50% -26px;*/
+    font-size: 12px;
+    font-family: Verdana, "Verdana CE", Arial, "Arial CE", "Lucida Grande CE", lucida, "Helvetica CE", sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.header{
+/*    margin: 0;
+    padding: 0;    */
+    font-size: 20px;
+    background-color: deepskyblue;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+li {
+    float: left;
+}
+
+a:link, a:visited {
+    display: block;
+    width: 150px;
+    font-weight: bold;
+    color: #FFFFFF;
+    background-color: deepskyblue;
+    text-align: center;
+    padding: 4px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+a:hover, a:active {
+    background-color: royalblue;
+}
+
+.commandButtons {
+    margin-left: 0px;
+    padding: 3px 15px;
+}
+
+.commandButtons li {
+    list-style: none;
+    display: inline;
+    border-left: 1px solid #dddddd;
+}
+
+.commandButtons li a{
+    text-transform: capitalize;
+}
+
+.smallCommandButtons {    
+    margin-left: 0px;
+}
+.smallCommandButtons li {
+    list-style: none;
+    display: inline;
+    border-left: 1px solid #dddddd;
+}
+.smallCommandButtons li a{
+    text-transform: capitalize;    
+    width: 50px;
+}
+
+.bigCommandButtons li a{
+    text-transform: capitalize;
+    width: 250px;
+}

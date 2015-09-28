@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{resourceBundle.createServiceCategoryLink}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form>
+                <h:outputText value="#{resourceBundle.createServiceCategoryPageTitle}"></h:outputText>                
+
+                <h:panelGrid columns="3" border="">
+                    
+                    <h:outputLabel value="#{resourceBundle.name}" for="serviceCategoryName" />
+                    <h:inputText id="serviceCategoryName" value="#{serviceCategoryController.currentRow.name}" title="#{resourceBundle.createServiceCategoryTitle_name}"/>
+                    <h:message for="serviceCategoryName" style="color:red" />
+                    
+                    <h:outputLabel value="#{resourceBundle.description}" for="serviceCategoryDescription" />
+                    <h:inputText id="serviceCategoryDescription" value="#{serviceCategoryController.currentRow.description}" title="#{resourceBundle.createServiceCategoryTitle_description}" />                    
+                    <h:message for="serviceCategoryDescription" style="color:red" />
+                    
+                </h:panelGrid>
+
+                <ul class="commandButtons">
+                    <li><h:commandLink action="ServiceCategoryList" value="#{resourceBundle.button_cancel}" immediate="true" /></li>
+                    <li>
+                        <h:commandLink action="#{serviceCategoryController.create}" value="#{resourceBundle.button_save}" >
+                            <f:setPropertyActionListener target="#{serviceCategoryController.nextPage}" value="ServiceCategoryList"/>
+                        </h:commandLink>
+                    </li>                    
+                </ul>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

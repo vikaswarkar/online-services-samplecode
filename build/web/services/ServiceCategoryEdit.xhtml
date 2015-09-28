@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{resourceBundle.editServiceCategoryPageTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form>
+                <h:outputText value="#{resourceBundle.editServiceCategoryPageTitle}"></h:outputText>                
+                <table columns="3">
+                    <tr>
+                        <td><h:outputLabel value="#{resourceBundle.name}" for="serviceCategoryName" /></td>
+                        <td><h:inputText id="serviceCategoryName" value="#{serviceCategoryController.currentRow.name}"  /></td>
+                        <td><h:message for="serviceCategoryName" errorStyle="color: red" infoStyle="color: green" /></td>
+                    </tr>
+                    <tr>
+                        <td><h:outputLabel value="#{resourceBundle.description}" for="serviceCategoryDescription" /></td>
+                        <td><h:inputText id="serviceCategoryDescription" value="#{serviceCategoryController.currentRow.description}" /></td>
+                        <td><h:message for="serviceCategoryDescription" errorStyle="color: red" infoStyle="color: green" /></td>
+                    </tr>
+                </table>
+                
+                <ul class="commandButtons">
+                    <li><h:commandLink action="ServiceCategoryList" value="#{resourceBundle.button_cancel}" immediate="true" /></li>
+                    <li><h:commandLink action="#{serviceCategoryController.update()}" value="#{resourceBundle.button_update}" >
+                            <f:setPropertyActionListener target="#{serviceCategoryController.nextPage}" value="ServiceCategoryList"/>
+                        </h:commandLink>
+                    </li>                    
+                </ul>
+                
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

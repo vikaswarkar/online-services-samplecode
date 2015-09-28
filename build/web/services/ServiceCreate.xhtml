@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{resourceBundle.createServiceCategoryLink}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form>
+                <h:outputText value="#{resourceBundle.createServicePageTitle} for #{serviceController.serviceCategory.serviceCategoryId} - #{serviceController.serviceCategory.name}"></h:outputText>                
+
+                <h:panelGrid columns="3" border="">
+                    
+                    <h:outputLabel value="#{resourceBundle.name}" for="serviceName" />
+                    <h:inputText id="serviceName" value="#{serviceController.currentRow.name}" title="#{resourceBundle.createServiceCategoryTitle_name}"/>
+                    <h:message for="serviceName" style="color:red" />
+
+                    <h:outputLabel value="#{resourceBundle.rate}" for="serviceRate" />
+                    <h:inputText id="serviceRate" value="#{serviceController.currentRow.rate}" title="#{resourceBundle.createServiceCategoryTitle_description}" />                    
+                    <h:message for="serviceRate" style="color:red" />
+                    
+                    <h:outputLabel value="#{resourceBundle.description}" for="serviceDescription" />
+                    <h:inputText id="serviceDescription" value="#{serviceController.currentRow.description}" title="#{resourceBundle.createServiceCategoryTitle_description}" />                    
+                    <h:message for="serviceDescription" style="color:red" />
+                    
+                </h:panelGrid>
+
+                <ul class="commandButtons">
+                    <li><h:commandLink action="ServiceList" value="#{resourceBundle.button_cancel}" immediate="true" /></li>
+                    <li>
+                        <h:commandLink action="#{serviceController.create}" value="#{resourceBundle.button_save}" >
+                            <f:setPropertyActionListener target="#{serviceController.nextPage}" value="ServiceList"/>
+                        </h:commandLink>
+                    </li>                    
+                </ul>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

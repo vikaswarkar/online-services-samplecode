@@ -1,0 +1,75 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    template="/template.xhtml">
+
+    <ui:define name="title">
+        <h:outputText value="#{bundle.ListCategoryTitle}"></h:outputText>
+    </ui:define>
+    <ui:define name="body">
+        <h:form id="categoryList">
+
+            <h:outputText value="#{resourceBundle.listServiceCategoryPageTitle}"></h:outputText>
+
+            <ul class="smallCommandButtons">
+                <li><h:commandLink action="ServiceCategoryCreate" value="#{resourceBundle.button_new}" actionListener="#{serviceCategoryController.prepareToCreate()}"/></li>
+            </ul>                
+            <h:dataTable var="serviceCategory" summary="#{resourceBundle.serviceCategories}" value="#{serviceCategoryController.serviceCategories}" rules="all" cellpadding="3">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{resourceBundle.serviceCategoryID}" />
+                    </f:facet>
+                    <h:outputText value="#{serviceCategory.serviceCategoryId}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{resourceBundle.serviceCategoryName}" />
+                    </f:facet>
+                    <h:outputText value="#{serviceCategory.name}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{resourceBundle.serviceCategoryDescription}" />
+                    </f:facet>
+                    <h:outputText value="#{serviceCategory.description}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{resourceBundle.action}"/>
+                    </f:facet>
+                    <ul class="smallCommandButtons">
+                        <li><h:commandLink action="#{serviceCategoryController.prepareToView(serviceCategory)}" value="#{resourceBundle.view}">
+                                <f:setPropertyActionListener target="#{serviceCategoryController.nextPage}" value="ServiceCategoryView"/>
+                            </h:commandLink>
+                        </li>
+                        <li>
+                            <h:commandLink action="#{serviceCategoryController.prepareToEdit(serviceCategory)}" value="#{resourceBundle.edit}">
+                                <f:setPropertyActionListener target="#{serviceCategoryController.nextPage}" value="ServiceCategoryEdit"/>
+                            </h:commandLink>
+                        </li>
+                        <li><h:commandLink action="#{serviceCategoryController.prepareToDelete(serviceCategory)}" value="#{resourceBundle.delete}">
+                                <f:setPropertyActionListener target="#{serviceCategoryController.nextPage}" value="ServiceCategoryDelete"/>
+                            </h:commandLink>
+                        </li>
+                        <li>
+                            <h:commandLink action="ServiceList" value="#{resourceBundle.list}" title="#{resourceBundle.listServices}">
+                                <f:setPropertyActionListener target="#{serviceController.serviceCategory}" value="#{serviceCategory}"/>
+                            </h:commandLink>
+                        </li>                    
+                    </ul>  
+                </h:column>    
+
+                <h:column rendered="#{serviceCategoryController.showConfirmationMessage(serviceCategory)}">
+                    <f:facet name="header">
+                        <h:outputText value="Confirmation" />
+                    </f:facet>
+                    <h:outputText value="Sure You want to Delete this Service Category ?" />
+                </h:column>                
+            </h:dataTable>
+
+        </h:form>
+    </ui:define>
+
+</ui:composition>

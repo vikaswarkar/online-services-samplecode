@@ -1,0 +1,83 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    template="/template.xhtml">
+
+    <ui:define name="title">
+        <h:outputText value="#{bundle.listServicePageTitle}"></h:outputText>
+    </ui:define>
+    <ui:define name="body">
+        <h:form id="categoryList">
+
+            <h:outputText value="#{resourceBundle.listServicePageTitle} for #{serviceController.serviceCategory.serviceCategoryId} - #{serviceController.serviceCategory.name}"></h:outputText>
+
+            <ul class="smallCommandButtons">
+                <li>
+                    <h:commandLink action="#{serviceController.prepareToCreate()}" value="#{resourceBundle.button_new}">
+                        <f:setPropertyActionListener target="#{serviceController.nextPage}" value="ServiceCreate"/>
+                    </h:commandLink>
+                </li>
+            </ul>                
+            <h:dataTable
+                var="service"
+                summary="Service Categories"
+                value="#{serviceController.serviceList}"
+                rules="all"
+                cellpadding="5">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Service ID" />
+                    </f:facet>
+                    <h:outputText value="#{service.serviceId}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Service Name" />
+                    </f:facet>
+                    <h:outputText value="#{service.name}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Service Description" />
+                    </f:facet>
+                    <h:outputText value="#{service.description}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Actions"/>
+                    </f:facet>
+                    <ul class="smallCommandButtons">
+                        <li>
+                            <h:commandLink action="#{serviceController.prepareToView(service)}" value="#{resourceBundle.view}">
+                                <f:setPropertyActionListener target="#{serviceController.nextPage}" value="ServiceView"/>
+                            </h:commandLink>
+                        </li>
+                        <li>
+                            <h:commandLink action="#{serviceController.prepareToEdit(service)}" value="#{resourceBundle.edit}">
+                                <f:setPropertyActionListener target="#{serviceController.nextPage}" value="ServiceEdit"/>
+                            </h:commandLink>
+                        </li>
+                        <li>
+                            <h:commandLink action="#{serviceController.prepareToDelete(service)}" value="#{resourceBundle.delete}">
+                                <f:setPropertyActionListener target="#{serviceController.nextPage}" value="ServiceDelete"/>
+                            </h:commandLink>
+                        </li>                 
+                    </ul>  
+                </h:column>    
+
+                <h:column rendered="#{serviceCategoryController.showConfirmationMessage(serviceCategory)}">
+                    <f:facet name="header">
+                        <h:outputText value="Confirmation" />
+                    </f:facet>
+                    <h:outputText value="Sure You want to Delete this Service Category ?" />
+                </h:column>                
+            </h:dataTable>
+            <ul class="commandButtons">
+                <li><h:commandLink action="ServiceCategoryList" value="#{resourceBundle.button_cancel}" immediate="true" /></li>
+            </ul>
+        </h:form>
+    </ui:define>
+
+</ui:composition>
